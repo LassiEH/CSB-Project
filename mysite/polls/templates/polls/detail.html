@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Polls</title>
+  </head>
+  <body>
+    <h1>{{ question.question_text }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message}}</strong></p>{% endif %}
+
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+      {% csrf_token %}
+      {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+      {% endfor %}
+      <input type="submit" value="vote">
+    </form>
+
+    
+
+    {% block content %}
+     {% for comment in comments %}
+      <p>{{ comment.user.username }} said: {{comment.comment_text }}</p>
+     {% endfor %}
+     
+     <form method="post" action="{% url 'polls:detail' question.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Add comment</button>
+     </form>
+    {% endblock %}
+
+    <p><a href="{% url 'polls:login' %}">Login to leave a comment</a></p>
+    <p><a href="{% url 'polls:index' %}">Return back</a></p>
+  </body>
+</html>
