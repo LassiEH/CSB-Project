@@ -10,6 +10,14 @@
     {% if error_message %}<p><strong>{{ error_message}}</strong></p>{% endif %}
 
     <form action="{% url 'polls:vote' question.id %}" method="post">
+      <!-- flaw 1: The lack of {% csrf_token %} enables cross site request forgeries.
+      Without this token an attacker could abuse user priviledges and perform malicious
+      actions on trusted websites because the identity of the request made wouldn't be verified.
+
+      The fix: add the following {% csrf_token %} to all forms. I have added them already, because
+      the django web app wouldn't work without it.
+      -->
+
       {% csrf_token %}
       {% for choice in question.choice_set.all %}
         <input type="radio" name="choice" id="choice{{forloop.counter }}" value="{{ choice.id }}">
