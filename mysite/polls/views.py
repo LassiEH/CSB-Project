@@ -19,13 +19,25 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Question.objects.order_by('-pub_date')[:5]
     
+# flaw 4: SQL injection. The following query for the comments in the
+# DetailView is suspectible to SQL injections.
+#
 class DetailView(generic.DetailView):
     model = Question
     template_name ='polls/detail.html'
 
     def get(self, request, *args, **kwargs):
         question = self.get_object()
-        comments = Comment.objects.filter(question=question)
+
+        #-
+        comments = Comment.objects.all()
+        sqlq = request.GET.get('search')
+        if sqlq:
+            comments = Comment.objects.raw("SELECT * FROM Comment WHERE title LIKE '%{}%'".format(sqlq))
+        #-
+            
+        #comments = Comment.objects.filter(question=question)
+
         form = CommentForm()
         return render(request, self.template_name, {'question': question, 'comments': comments, 'form': form})
 
