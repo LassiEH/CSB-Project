@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -103,6 +103,40 @@ AUTH_PASSWORD_VALIDATORS = [
 # Login
 
 LOGIN_REDIRECT_URL = 'polls:index'
+
+# flaw 2: The site has no logging and monitoring capabilities.
+# This will lead to situations where attacks on the system aren't noticed
+# and won't subsequently be responded to.
+
+# The fix: Django has its own lagging framework, which is designed with this
+# problem in mind. All we have to do is add loggers for the components of our
+# application.
+
+# This configuration sends messages of level 'INFO' and higher to the console.
+# While DEBUG = True, this level of sending messages is the same as Django's default
+# logging configuration.
+# These logs could also be saved on a local file.
+
+#LOGGING = {
+#    "version": 1,
+#    "disable_existing_loggers": False,
+#    "handlers": {
+#        "console": {
+#            "class": "logging.StreamHandler",
+#        },
+#    },
+#    "root": {
+#        "handlers": ["console"],
+#        "level": "WARNING",
+#    },
+#    "loggers": {
+#        "django": {
+#            "handlers": ["console"],
+#            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+#            "propagate": False,
+#        },
+#    },
+#}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
