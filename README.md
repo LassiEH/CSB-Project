@@ -9,3 +9,8 @@ The flaws:
   4. SQL injection.
   5. Indentification and authentication failures, hashing.
 
+Download the project and then run it with
+
+```
+python3 manage.py runserver
+```
