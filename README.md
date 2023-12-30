@@ -18,9 +18,11 @@ python3 manage.py runserver
 Now the application can be found at:
 http://localhost:8000/polls/
 
-Account:
+**Account:**
+```
 **Username** - john
 **password** - password
+```
 
-[Flaw 1](https://github.com/LassiEH/CSB-Project/blob/b34fcf15f3a962548316a8ee654b242978b0137a/mysite/polls/templates/polls/detail.html#L13)
-**CSRF**
+[**Flaw 1**](https://github.com/LassiEH/CSB-Project/blob/b34fcf15f3a962548316a8ee654b242978b0137a/mysite/polls/templates/polls/detail.html#L13)
+CSRF
