@@ -24,7 +24,7 @@ Username: john
 Password: password
 ```
 
-[**Flaw 1:**](https://github.com/LassiEH/CSB-Project/blob/b34fcf15f3a962548316a8ee654b242978b0137a/mysite/polls/templates/polls/detail.html#L13)
+[**FLAW 1:**](https://github.com/LassiEH/CSB-Project/blob/b34fcf15f3a962548316a8ee654b242978b0137a/mysite/polls/templates/polls/detail.html#L13)
  CSRF
  
 [**FLAW 2:**](https://github.com/LassiEH/CSB-Project/blob/31f8efd1bf4247eb59634f24b3865b76601fd577/mysite/mysite/settings.py#L116)
