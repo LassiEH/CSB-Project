@@ -18,6 +18,13 @@ python3 manage.py runserver
 Now the application can be found at:
 http://localhost:8000/polls/
 
+In case it doesn't run the following commands as well:
+
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
 **Account:**
 ```
 Username: john
