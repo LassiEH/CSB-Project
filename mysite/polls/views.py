@@ -21,7 +21,16 @@ class IndexView(generic.ListView):
     
 # flaw 4: SQL injection. The following query for the comments in the
 # DetailView is suspectible to SQL injections.
+# Doing querys this way makes it possible for an attacker to manipulate
+# the database to access hidden information.
+    
+# fix: Incoming data should be filtered, validated or sanitized before it reaches
+# the database. Django has built in options to filter input, which is used in the 
+# commented line. Just comment out everything between
+# #-
 #
+# #-
+# and remove the '#' before 'comments = Comment.objects.filter(question=question)'
 class DetailView(generic.DetailView):
     model = Question
     template_name ='polls/detail.html'
