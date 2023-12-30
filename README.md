@@ -1,4 +1,4 @@
-Cyber security base - 2023 project 1
+**Cyber security base - 2023 project 1**
 
 This project contains a web application that has multiple cyber security flaws in its design.
 
