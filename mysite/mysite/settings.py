@@ -147,6 +147,19 @@ LOGIN_REDIRECT_URL = 'polls:index'
 #    },
 #}
 
+# flaw 5: Identification and authentication failures. In the following
+# password hashing setting the unsecure MD5 is used. MD5 isn't safe because
+# it is vulnerable to collision attacks
+
+# fix: Use better hashing for your passwords. You can install SHA256 and Argon2
+# password hashers with pip and use either of them rather than the MD5.
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    #'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    #'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 

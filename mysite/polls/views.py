@@ -10,7 +10,8 @@ from .models import Question, Choice, Comment
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-# Create your views here.
+from django.utils.decorators import method_decorator
+
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
